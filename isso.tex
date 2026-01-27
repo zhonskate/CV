@@ -10,6 +10,8 @@
   \usepackage{mathptmx}
 \fi
 
+\usepackage[hidelinks]{hyperref}
+
 \definecolor{Black}{HTML}{000000}
 \colorlet{heading}{Black}
 \colorlet{accent}{Black}
@@ -26,14 +28,19 @@
   {\color{heading}\rule{\linewidth}{0.5pt}\par}\smallskip
 }
 
-% Compact job entry: Company - Role - Dates
-\newcommand{\cvjob}[3]{%
-  \textbf{#1} -- \textit{#2} \hfill {\small #3}\par\smallskip
+% Compact job entry: Company - Role - Dates - Description
+\newcommand{\cvjob}[4]{%
+  \textbf{#1} {\small(#4)} -- \textit{#2} \hfill {\small #3}\par\smallskip
 }
 
-% Compact education entry: Institution - Degree - Dates
+% Sub-entry under a company: Team - Description - Dates
+\newcommand{\cvsubentry}[3]{%
+  \hspace{0.5em}\textit{#1} {\small(#2)} \hfill {\small #3}\par\smallskip
+}
+
+% Compact education entry: Degree - Institution - Dates
 \newcommand{\cvedu}[3]{%
-  \textbf{#1} -- #2 \hfill {\small #3}\par\smallskip
+  #1 -- \textit{#2} \hfill {\small #3}\par\smallskip
 }
 
 \begin{document}
@@ -41,60 +48,88 @@
 \name{JAVIER RODRÍGUEZ}
 \tagline{Backend Developer}
 \personalinfo{
-\mailaddress{javierrd96@gmail.com}
-\phone{+61 451 494 198}
-\homepage{javi.dev}
-\github{github.com/zhonskate}
+\faEnvelope\hspace{0.3em}\href{mailto:javierrd96@gmail.com}{javierrd96@gmail.com}\quad
+\faPhone\hspace{0.3em}+61 451 494 198\quad
+\faGlobe\hspace{0.3em}\href{https://javi.dev}{javi.dev}\quad
+\faGithub\hspace{0.3em}\href{https://github.com/zhonskate}{github.com/zhonskate}\quad
+\faLinkedin\hspace{0.3em}\href{https://www.linkedin.com/in/zhonskate}{linkedin.com/in/zhonskate}
 }
 
 \makecvheader
 
 \cvsection{Summary}
-{\small Backend Software Engineer with 7+ years building reliable, scalable Python services. Shipped production APIs and integrations across fintech and SaaS. Co-founder with end-to-end product ownership from discovery to GTM; now in maintenance only and seeking a full-time role. Pragmatic, fast, and quality-focused; effective in onsite, hybrid, and remote teams across time zones.}
+{\small
+\begin{itemize}[nosep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*]
+\item 7+ years building reliable, scalable Backend Python services. Shipped production APIs and integrations across fintech and SaaS.
+\item Co-founder with end-to-end product ownership from discovery to GTM; now in maintenance only and seeking a full-time role.
+\item CHANGE - Pragmatic, fast, and quality-focused; effective in onsite, hybrid, and remote teams across time zones.
+\end{itemize}
+}
 
 \cvsection{Education}
-\cvedu{Universitat Politècnica de València}{Master's in Cloud and HPC (Cloud specialization)}{Sep 2018 - Dec 2020}
-\cvedu{Universitat Politècnica de València}{Bachelor's in Computer Science (Computing specialization)}{Sep 2014 - Jul 2018}
-\cvedu{Amazon Web Services}{AWS Certified Solutions Architect}{2024}
-
-\cvsection{Technical Skills}
+\cvedu{\textbf{Master's in Cloud and HPC} (Cloud specialization)}{Universitat Politècnica de València}{Sep 2018 - Dec 2020}
 {\small
-\textbf{Languages:} Python, JavaScript, TypeScript, SQL, Bash, HTML, CSS \quad
-\textbf{Backend:} FastAPI, Django, Flask, PostgreSQL\\
-\textbf{Frontend:} HTMX, Svelte, Vue \quad
-\textbf{Cloud \& DevOps:} AWS, Docker, Kubernetes, Terraform, Vercel, CI/CD\\
-\textbf{Tools:} AI Agents, Linux, Git, Jupyter, LaTeX, Ledger-CLI
+\begin{itemize}[nosep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*]
+\item Special mention (top 3 out of 50+ students) in Cloud Computing \& Grid Computing courses.
+\end{itemize}
+}
+\cvedu{\textbf{Bachelor's in Computer Science} (Computing specialization)}{Universitat Politècnica de València}{Sep 2014 - Jul 2018}
+{\small
+\begin{itemize}[nosep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*]
+\item Special mention (top 3 out of 400+ students) in Programming I, Automata Theory \& Introduction to Computer Graphics courses.
+\item Second place in the Cajamar UniversityHack Datathon 2018 - Salesforce predictive modelling challenge, a Spain-wide competition.
+\end{itemize}
+}
+\cvedu{\textbf{AWS Certified Solutions Architect}}{Amazon Web Services}{Mar 2024}
+
+\cvsection{Skills}
+{\small
+\begin{minipage}[t]{0.48\linewidth}
+\textbf{Programming:} Python, JavaScript, TypeScript, SQL, Bash\\
+\textbf{Backend:} FastAPI, PostgreSQL, SQLAlchemy, Django, Flask \\
+\textbf{Frontend:} HTMX, Svelte, Vue, Tailwind CSS\\
+\textbf{AI:} AI Agents, LLMs, Claude code, cursor, langchain\\
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\textbf{Cloud \& DevOps:} AWS, Docker, Kubernetes, Terraform, CI/CD\\
+\textbf{Tools:} Linux, Git, Jupyter, LaTeX, Ledger-CLI\\
+\textbf{Monitoring:} Sentry, Mixpanel, Datadog, Intercom\\
+\textbf{Languages:} English (fluent), Spanish \& Catalan (native)\\
+\end{minipage}
 }
 
 \cvsection{Work Experience}
 
-\cvjob{Cordada}{Co-Founder}{Sep 2024 - Jan 2026}
+\cvjob{Cordada}{Co-Founder}{Sep 2024 - Jan 2026}{Spanish-based startup}
 {\small
 \begin{itemize}[nosep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*]
-\item Built enrutar.com, an operations SaaS for trades businesses, leading product and engineering.
-\item Delivered multi-tenant backend with FastAPI/PostgreSQL on Hetzner; S3 storage, Stripe billing, Mixpanel, background jobs, RBAC, notifications, and observability.
-\item Owned GTM: customer discovery, paid/organic acquisition, and support. €400 MRR with 10 paying accounts.
+\item Built \href{https://enrutar.com}{enrutar.com}, an operations SaaS for trades businesses, leading product and engineering.
+\item Delivered multi-tenant backend with FastAPI/PostgreSQL on Hetzner; S3 storage, Stripe billing, Mixpanel, background jobs with Celery, RBAC, notifications, and observability; Programmed frontend in Svelte, and Tailwind CSS, leveraging AI tools as Claude code and Cursor.
+\item Owned GTM: customer discovery and, paid/organic acquisition, and support. €400 MRR with 10 paying accounts.
 \end{itemize}
 }
 
-\cvjob{Gangverk}{Backend Developer - PayAnalytics}{May 2024 - Sep 2024}
+\cvjob{Gangverk}{Backend Developer}{}{Icelandic top 3 software agency}
+
+\cvsubentry{PayAnalytics team}{Icelandic salary management SaaS}{May 2024 - Sep 2024}
 {\small
 \begin{itemize}[nosep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*]
-\item Automated migration of 5,000+ GitHub issues to Jira with audit fidelity; zero-downtime cutover.
-\item Contributed to internal customer panel (Django) APIs and permissions.
+\item Automated migration of 5,000+ GitHub issues to Jira with audit fidelity, conserving data integrity; zero-downtime cutover.
+\item Contributed to internal customer panel APIs and permissions, participating their an audit tool development.
 \end{itemize}
 }
 
-\cvjob{Gangverk}{Backend Developer - Kvika}{Apr 2021 - May 2024}
+\cvsubentry{Kvika team}{Icelandic investment and commercial bank}{Apr 2021 - May 2024}
 {\small
 \begin{itemize}[nosep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*]
-\item Built and maintained backend services for Kvika website and Auður banking app; integrated with core banking systems.
-\item Rebuilt customer onboarding flows (KYC, appropriateness), enabling new products and reducing drop-off.
-\item Implemented portfolio tracking backend ingesting historical market data; idempotent pipelines and tests.
+\item Built and maintained backend services for Kvika website and Auður banking app (25k+ users); integrated with icelandiccore banking systems.
+\item Rebuilt customer onboarding flows (KYC, appropriateness), enabling new products and reducing drop-off rate by 30\%.
+\item Implemented portfolio tracking backend ingesting, transforming and serving historical market data; idempotent pipelines and tests.
 \end{itemize}
 }
 
-\cvjob{ITI - Instituto Tecnológico de Informática}{R\&D Technician}{Mar 2018 - Apr 2021}
+\cvjob{ITI - Instituto Tecnológico de Informática}{R\&D Technician}{Mar 2018 - Apr 2021}{Spanish public R\&D institute}
 {\small
 \begin{itemize}[nosep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*]
 \item Developed distributed services across AI, big data, and blockchain; contributed to EU projects (RADIATUS).
@@ -102,10 +137,11 @@
 \end{itemize}
 }
 
-\cvjob{Diebold Nixdorf}{Remote Assistance Technician - Intern}{Sep 2017 - Feb 2018}
+\cvjob{Diebold Nixdorf}{Remote Assistance Technician - Intern}{Sep 2017 - Feb 2018}{ATM and banking technology}
 {\small
 \begin{itemize}[nosep,topsep=0pt,parsep=0pt,partopsep=0pt,leftmargin=*]
 \item Automated Linux server maintenance via shell scripts; reduced manual effort by 50\%.
+\item Communicated in real time with customers via remote desktop and phone.
 \end{itemize}
 }
 
